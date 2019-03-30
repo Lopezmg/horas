@@ -1,0 +1,57 @@
+<?php
+
+/**
+ * @author Milton
+ * desarrollo para CESAL
+ */
+class ValidacionLogin {
+
+    protected $usuario;
+    protected $contrasena;
+    protected $activo;
+    
+    function __construct($usuario, $contrasena) {
+        $this->usuario = $usuario;
+        $this->contrasena = $contrasena;
+        $this->activo=false;
+    }
+
+    function getUsuario() {
+        return $this->usuario;
+    }
+
+    function getContrasena() {
+        return $this->contrasena;
+    }
+
+    function setUsuario($usuario) {
+        $this->usuario = $usuario;
+    }
+
+    function setContrasena($contrasena) {
+        $this->contrasena = $contrasena;
+    }
+
+    function validacion() {
+        include 'ConexionDB.php';
+        $conex = new ConexionDB();
+        if ($conex->getMsj() == "CONECTADO_EXITOSAMENTE") {
+            $rs = $conex->conexion->query("CALL ValidacionLogin('$this->usuario','$this->contrasena')");
+            if($rs->num_rows!=0){
+                while($row=$rs->fetch_array()){
+                    $_SESSION['ID']=$row['ID'];
+                    $_SESSION['Nombre']=$row['Nombre'];
+                    $_SESSION['Rol']=$row['Rol'];
+                    $this->activo=true;
+                }
+            }else {
+                $this->activo=false;
+            }
+        } else {
+            $this->activo=false;
+        }
+        $conex->conexion->close();
+        return $this->activo;
+    }
+
+}
