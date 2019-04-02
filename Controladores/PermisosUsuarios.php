@@ -40,7 +40,7 @@ class PermisosUsuarios {
                 echo "</div>";  
             }
             
-       
+       $objConexion->conexion->close();
             
         }
         
@@ -48,9 +48,10 @@ class PermisosUsuarios {
             switch ($modulo){
                 case "Talleres":
                     echo "<ul>";
-                    echo "<li><a href='Mistalleres.php'>Mis Talleres</a></li>";
+                    echo "<li><a href='talleres.php'>Talleres</a></li>";
                     echo "<li><a href='#Modal_Planificacion'>Planificacion</a></li>";
                     echo "<li><a href='#'>Asistencias </a></li>";
+                    echo "<li><a href='#'>Notas </a></li>";
                     echo "</ul>";
                     break;
                 case "Alumnos":

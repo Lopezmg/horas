@@ -41,7 +41,8 @@ class ValidacionLogin {
                 while($row=$rs->fetch_array()){
                     $_SESSION['ID']=$row['ID'];
                     $_SESSION['Nombre']=$row['Nombre'];
-                    $_SESSION['Rol']=$row['Rol'];
+                    $_SESSION['RolId']=$row['RolId'];
+                    $_SESSION['RolNombre']=$row['RolNombre'];
                     $this->activo=true;
                 }
             }else {

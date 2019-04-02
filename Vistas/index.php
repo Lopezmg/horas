@@ -1,10 +1,10 @@
 <?php 
 session_start();
-include "../Controladores/ValidacionLogin.php";
+
 if (!isset($_SESSION['Nombre'])) {
     $usuario = $_POST["txtUsuario"];
     $contrasena = $_POST["txtContrasena"];
-    
+    include "../Controladores/ValidacionLogin.php";    
     $validando = new ValidacionLogin($usuario, $contrasena);
     if (!$validando->validacion())
         header("Location: ../");
@@ -19,13 +19,22 @@ if (!isset($_SESSION['Nombre'])) {
 	<title>Pantalla Principal</title>
 </head>
 <body>
-    
+
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+            <a class="navbar-brand" href="#">CESAL</a>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="sessionout.php">cerrar sesión</a>
+                    </li>
+                    
+                </ul> 
+    </nav>
 	<section class="container">
-            <h2 style=" padding-top: 100px;"class="text-center">Sistema Control Administrativo</h2>
+            <h2 style=" padding-top: 100px; padding-bottom: 50px;"class="text-center">Sistema Control Administrativo</h2>
                 
 		<?php
                 include '../Controladores/PermisosUsuarios.php';
-                $permiso = new PermisosUsuarios($_SESSION['Rol']);
+                $permiso = new PermisosUsuarios($_SESSION['RolId']);
                 $permiso->getPermisos();
                 ?>
 	</section>
