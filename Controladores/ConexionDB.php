@@ -1,15 +1,9 @@
 <?php
-
-/**
-  CONEXION PARA LA BASE DE DATOS
- * @author Milton
- * Desarrollo para CESAL
- */
 class ConexionDB {
 
     //put your code here
-    public $conexion;
-    public $msj;
+    protected $conexion;
+    protected $msj;
 
     function __construct() {
         $servidor = "localhost";

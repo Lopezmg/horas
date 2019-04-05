@@ -1,13 +1,14 @@
 <?php 
 session_start();
-
+include '../Controladores/PermisosUsuarios.php';                      
 if (!isset($_SESSION['Nombre'])) {
     $usuario = $_POST["txtUsuario"];
     $contrasena = $_POST["txtContrasena"];
     include "../Controladores/ValidacionLogin.php";    
     $validando = new ValidacionLogin($usuario, $contrasena);
-    if (!$validando->validacion())
+    if ($validado = !$validando->validacion()) {
         header("Location: ../");
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -33,9 +34,9 @@ if (!isset($_SESSION['Nombre'])) {
             <h2 style=" padding-top: 100px; padding-bottom: 50px;"class="text-center">Sistema Control Administrativo</h2>
                 
 		<?php
-                include '../Controladores/PermisosUsuarios.php';
+                
                 $permiso = new PermisosUsuarios($_SESSION['RolId']);
-                $permiso->getPermisos();
+                $permisos = $permiso->getPermisos();
                 ?>
 	</section>
 	<script src="../Js/bootstrap.js"></script>

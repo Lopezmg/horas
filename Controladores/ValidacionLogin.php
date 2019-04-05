@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @author Milton
  * desarrollo para CESAL
@@ -33,12 +32,13 @@ class ValidacionLogin {
     }
 
     function validacion() {
-        include 'ConexionDB.php';
+        include "../Controladores/ConexionDB.php";
         $conex = new ConexionDB();
-        if ($conex->getMsj() == "CONECTADO_EXITOSAMENTE") {
-            $rs = $conex->conexion->query("CALL ValidacionLogin('$this->usuario','$this->contrasena')");
+        if ($localconexion = $conex->getConexion()) {
+            
+            $rs =$localconexion->query("CALL ValidacionLogin('$this->usuario','$this->contrasena')");
             if($rs->num_rows!=0){
-                while($row=$rs->fetch_array()){
+                while($row =$rs->fetch_array()){
                     $_SESSION['ID']=$row['ID'];
                     $_SESSION['Nombre']=$row['Nombre'];
                     $_SESSION['RolId']=$row['RolId'];
@@ -51,7 +51,7 @@ class ValidacionLogin {
         } else {
             $this->activo=false;
         }
-        $conex->conexion->close();
+        $conex->getConexion()->close();
         return $this->activo;
     }
 

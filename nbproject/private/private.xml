@@ -4,9 +4,9 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/xampp/htdocs/CESAL/Controladores/ValidacionLogin.php</file>
-            <file>file:/C:/xampp/htdocs/CESAL/Controladores/Grupo.php</file>
             <file>file:/C:/xampp/htdocs/CESAL/Vistas/index.php</file>
-            <file>file:/C:/xampp/htdocs/CESAL/Vistas/Talleres.php</file>
+            <file>file:/C:/xampp/htdocs/CESAL/Css/bootstrap.css</file>
+            <file>file:/C:/xampp/htdocs/CESAL/Vistas/RegistroAlumno.php</file>
             <file>file:/C:/xampp/htdocs/CESAL/Controladores/PermisosUsuarios.php</file>
         </group>
     </open-files>

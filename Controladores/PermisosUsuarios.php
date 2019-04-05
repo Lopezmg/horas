@@ -10,8 +10,10 @@
 class PermisosUsuarios {
         protected $idRol;
         
+                
         function __construct($idRol) {
             $this->idRol = $idRol;
+            
         }
         
         function getIdRol() {
@@ -25,7 +27,8 @@ class PermisosUsuarios {
         function getPermisos(){
             include "../Controladores/ConexionDB.php";
             $objConexion = new ConexionDB();
-            if($rs = $objConexion->conexion->query("SELECT Modulo,Ver,Modificar FROM permisos_usuarios WHERE Rol=$this->idRol;")){
+            $sentencia = "SELECT Modulo,Ver,Modificar FROM permisos_usuarios WHERE Rol=$this->idRol;";
+            if($rs = $objConexion->getConexion()->query($sentencia)){
                 echo "<div class='row'>";  
                 while($row= $rs->fetch_array()){
                     echo "<div class='col-md-4'>";
@@ -40,7 +43,7 @@ class PermisosUsuarios {
                 echo "</div>";  
             }
             
-       $objConexion->conexion->close();
+       $objConexion->getConexion()->close();
             
         }
         
